@@ -1,25 +1,51 @@
 <html>
   <head>
     <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
-    <title>A-Frame Starter</title>
+    <title>Sutera's Orbit</title>
   </head>
   <body>
+    <a-assets>
+      <img id="Sun" src="Textures/Sun_Texture.jpg">
+      <img id="Earth" src="Textures/Earth_Texture.jpg">
+    </a-assets>
     <a-scene>
-      <!-- Big center sphere -->
-<a-sphere position="0 0 -5" radius="2.5" color="yellow"></a-sphere>
+<!--Sun-->
+<a-entity 
+geometry="primitive: sphere; radius: 4"
+material="src:#Sun"
+position="0 1 -10"
+radius="5"
+>
 
-<!-- Orbit pivot -->
-<a-entity position="0 0 -5"
-          animation="property: rotation; to: 0 360 0; loop: true; dur: 5000; easing: linear">
+  <!-- Earth Orbit Pivot -->
+  <a-entity
+    animation="property: rotation; to: 0 360 0; loop: true; dur: 20000; easing: linear"
+  >
   
-  <!-- Orbiting green sphere -->
-  <a-sphere position="5 0 0" radius="1" color="green"></a-sphere>
-
+  <!--Earth (Parent of Sun)-->
+  <a-entity 
+  geometry="primitive: sphere; radius: 2"
+  material="src:#Earth"
+  position="10 0 0"
+  >
+    <!--Moon (Parent of Earth, Grandparent of Sun)-->
+    <a-entity 
+    geometry="primitive: sphere; radius: 0.5"
+    material="src:#Moon"
+    position="3 0 0"
+    >
+    </a-entity>
+  </a-entity>
 </a-entity>
+
+
 
       <a-sky color="#000000"></a-sky>
     </a-scene>
   </body>
 </html>
 
-<!-- replace starter with the advance for shapes and add animation-->
+<!-- Goal for next week:
+ make a Sun (with light)
+ Earth to orbit sun
+ and moon to orbit Earth-->
