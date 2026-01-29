@@ -7,6 +7,7 @@
     <a-assets>
       <img id="Sun" src="Textures/Sun_Texture.jpg">
       <img id="Earth" src="Textures/Earth_Texture.jpg">
+      <img id="Moon" src="Textures/Moon_Texture.jpg">
     </a-assets>
     <a-scene>
 <!--Sun-->
@@ -17,9 +18,9 @@ position="0 1 -10"
 radius="5"
 >
 
-  <!-- Earth Orbit Pivot -->
+  <!-- Earth Pivot around Sun -->
   <a-entity
-    animation="property: rotation; to: 0 360 0; loop: true; dur: 20000; easing: linear"
+    animation="property: rotation; to: 0 360 0; loop: true; dur: 365000; easing: linear"
   >
   
   <!--Earth (Parent of Sun)-->
@@ -28,6 +29,12 @@ radius="5"
   material="src:#Earth"
   position="10 0 0"
   >
+
+    <!-- Moon pivot around Earth -->
+    <a-entity
+    animation="property: rotation; to: 0 360 0; loop: true; dur: 27300; easing: linear"
+    >
+
     <!--Moon (Parent of Earth, Grandparent of Sun)-->
     <a-entity 
     geometry="primitive: sphere; radius: 0.5"
