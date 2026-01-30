@@ -23,27 +23,41 @@ radius="5"
     animation="property: rotation; to: 0 360 0; loop: true; dur: 365000; easing: linear"
   >
   
-  <!--Earth (Parent of Sun)-->
-  <a-entity 
-  geometry="primitive: sphere; radius: 2"
-  material="src:#Earth"
-  position="10 0 0"
-  >
+<!-- Earth system (does NOT rotate) -->
+<a-entity position="10 0 0">
 
-    <!-- Moon pivot around Earth -->
+  <!-- Earth axial tilt -->
+  <a-entity rotation="0 0 -23.5">
+
+    <!-- Earth spin -->
     <a-entity
-    animation="property: rotation; to: 0 360 0; loop: true; dur: 27300; easing: linear"
+      animation="property: rotation; to: 0 360 0; loop: true; dur: 2400; easing: linear"
     >
+      <!-- Earth -->
+      <a-entity 
+        geometry="primitive: sphere; radius: 2"
+        material="src:#Earth"
+      ></a-entity>
+    </a-entity>
 
-    <!--Moon (Parent of Earth, Grandparent of Sun)-->
-    <a-entity 
-    geometry="primitive: sphere; radius: 0.5"
-    material="src:#Moon"
-    position="3 0 0"
+  </a-entity>
+
+  <!-- Moon orbit pivot (independent of Earth spin) -->
+  <a-entity rotation="0 0 5.1">
+    <a-entity
+      animation="property: rotation; to: 0 360 0; loop: true; dur: 27300; easing: linear"
     >
+      <!-- Moon -->
+      <a-entity 
+        geometry="primitive: sphere; radius: 0.5"
+        material="src:#Moon"
+        position="3 0 0"
+      ></a-entity>
     </a-entity>
   </a-entity>
+
 </a-entity>
+
 
 
 
