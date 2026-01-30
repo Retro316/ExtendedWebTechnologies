@@ -10,56 +10,62 @@
       <img id="Moon" src="Textures/Moon_Texture.jpg">
     </a-assets>
     <a-scene>
-<!--Sun-->
-<a-entity 
-geometry="primitive: sphere; radius: 4"
-material="src:#Sun"
-position="0 1 -10"
-radius="5"
->
 
-  <!-- Earth Pivot around Sun -->
-  <a-entity
-    animation="property: rotation; to: 0 360 0; loop: true; dur: 365000; easing: linear"
-  >
-  
-<!-- Earth system (does NOT rotate) -->
-<a-entity position="10 0 0">
+      <a-entity light="type: ambient; intensity: 2"
+        ></a-entity>
 
-  <!-- Earth axial tilt -->
-  <a-entity rotation="0 0 -23.5">
-
-    <!-- Earth spin -->
-    <a-entity
-      animation="property: rotation; to: 0 360 0; loop: true; dur: 2400; easing: linear"
-    >
-      <!-- Earth -->
+      <!--Sun-->
       <a-entity 
-        geometry="primitive: sphere; radius: 2"
-        material="src:#Earth"
-      ></a-entity>
-    </a-entity>
+      geometry="primitive: sphere; radius: 4"
+      material="src:#Sun"
+      position="0 1 -10"
+      animation="property: rotation; to: 0 360 0; loop: true; dur: 27000; easing: linear">
 
-  </a-entity>
+        <a-entity light="type: point; intensity: 2000; decay: 2"
+        position="0 0 0">
+        </a-entity>
 
-  <!-- Moon orbit pivot (independent of Earth spin) -->
-  <a-entity rotation="0 0 5.1">
-    <a-entity
-      animation="property: rotation; to: 0 360 0; loop: true; dur: 27300; easing: linear"
-    >
-      <!-- Moon -->
-      <a-entity 
-        geometry="primitive: sphere; radius: 0.5"
-        material="src:#Moon"
-        position="3 0 0"
-      ></a-entity>
-    </a-entity>
-  </a-entity>
+      </a-entity> <!--END of sun-->
+      
+      <!--Earth Orbit Pivot Controler-->
+      <a-entity
+      position="0 1 -10"
+      animation="property: rotation; to: 0 360 0; loop: true; dur: 365000; easing: linear"
+      >
+        <!-- Earth position & tilt-->
+        <a-entity 
+        position="10 0 0"
+        rotation="0 0 23.5">
 
-</a-entity>
+          <!-- Earth spin and orbit -->
+          <a-entity 
+          geometry="primitive: sphere; radius: 1"
+          material="src:#Earth"
+          animation="property: rotation; to: 0 360 0; loop: true; dur: 1000; easing: linear">
+          </a-entity> <!--END of Earth spin and orbit-->
+        </a-entity> <!--END of Earth position & tilt-->
 
+        <!--Moon Orbit Pivot Controler-->
+        <a-entity
+        position="10 0 0"
+        animation="property: rotation; to: 0 360 0; loop: true; dur: 27300; easing: linear"
+        >
+          <!-- Moon position & tilt-->
+          <a-entity 
+          position="2 0 0"
+          rotation="0 0 23.5">
 
+            <!-- Moon spin and orbit -->
+            <a-entity 
+            geometry="primitive: sphere; radius: 0.5"
+            material="src:#Moon">
+            </a-entity> <!--END of Moon spin and orbit-->
+          
+          </a-entity> <!--END of Moon position & tilt-->
 
+        </a-entity> <!--END of Moon pivot controler-->
+      
+      </a-entity> <!--END of Earth pivot controler-->
 
       <a-sky color="#000000"></a-sky>
     </a-scene>
