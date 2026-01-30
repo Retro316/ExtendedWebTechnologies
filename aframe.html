@@ -8,11 +8,10 @@
       <img id="Sun" src="Textures/Sun_Texture.jpg">
       <img id="Earth" src="Textures/Earth_Texture.jpg">
       <img id="Moon" src="Textures/Moon_Texture.jpg">
-    </a-assets>
+    </a-assets>    
     <a-scene>
 
-      <a-entity light="type: ambient; intensity: 2"
-        ></a-entity>
+    <a-entity light="type: ambient; intensity: 2"></a-entity>
 
       <!--Sun-->
       <a-entity 
@@ -21,7 +20,7 @@
       position="0 1 -10"
       animation="property: rotation; to: 0 360 0; loop: true; dur: 27000; easing: linear">
 
-        <a-entity light="type: point; intensity: 2000; decay: 2"
+        <a-entity light="type: point; intensity: 1000; decay: 2"
         position="0 0 0">
         </a-entity>
 
