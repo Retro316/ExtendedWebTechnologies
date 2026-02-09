@@ -8,21 +8,81 @@
       <img id="Sun" src="Textures/Sun_Texture.jpg">
       <img id="Earth" src="Textures/Earth_Texture.jpg">
       <img id="Moon" src="Textures/Moon_Texture.jpg">
+      <audio id="SunSound" src="Sounds/NASASunSonification.mp3">
+      <audio id="MoonSound" src="Sounds/MoonRadioChatter.mp3">
+      </audio>
     </a-assets>    
     <a-scene>
 
-    <a-entity light="type: ambient; intensity: 2"></a-entity>
+        <a-entity camera position="0 1.6 0" look-controls wasd-controls>
+          <a-cursor></a-cursor>
+        </a-entity>
 
       <!--Sun-->
       <a-entity 
       geometry="primitive: sphere; radius: 4"
       material="src:#Sun"
       position="0 1 -10"
-      animation="property: rotation; to: 0 360 0; loop: true; dur: 27000; easing: linear">
+      sound="src: #SunSound; loop: true; volume: 5"
+      animation="property: rotation; to: 0 360 0; loop: true; dur: 27000; easing: linear"
+      onclick="this.components.sound.playSound()">
 
         <a-entity light="type: point; intensity: 1000; decay: 2"
         position="0 0 0">
         </a-entity>
+
+        <!--Front Light-->
+        <a-entity light="type: spot;
+        angle: 200;
+        decay: 0
+        distance: 15"
+        position="0 0 8"
+        ></a-entity>
+
+        <!--Back Light-->
+        <a-entity light="type: spot;
+        angle: 200;
+        decay: 0
+        distance: 15"
+        position="0 0 -8"
+        rotation="0 180 0"
+        ></a-entity>
+
+        <!--Right Light-->
+        <a-entity light="type: spot;
+        angle: 200;
+        decay: 0
+        distance: 15"
+        position="8 0 0"
+        rotation="0 90 0"
+        ></a-entity>
+
+        <!--Left Light-->
+        <a-entity light="type: spot;
+        angle: 200;
+        decay: 0
+        distance: 15"
+        position="-8 0 0"
+        rotation="0 -90 0"
+        ></a-entity>
+
+        <!--Top Light-->
+        <a-entity light="type: spot;
+        angle: 200;
+        decay: 0
+        distance: 15"
+        position="0 8 0"
+        rotation="0 0 90"
+        ></a-entity>
+
+        <!--Bottom Light-->
+        <a-entity light="type: spot;
+        angle: 200;
+        decay: 0
+        distance: 15"
+        position="0 -8 0"
+        rotation="0 0 -90"
+        ></a-entity>
 
       </a-entity> <!--END of sun-->
       
@@ -57,7 +117,9 @@
             <!-- Moon spin and orbit -->
             <a-entity 
             geometry="primitive: sphere; radius: 0.5"
-            material="src:#Moon">
+            material="src:#Moon"
+            sound="src: #MoonSound; loop: true; volume: 1"
+            onclick="this.components.sound.playSound()">
             </a-entity> <!--END of Moon spin and orbit-->
           
           </a-entity> <!--END of Moon position & tilt-->
