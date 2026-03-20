@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Bounding Ball</title>
+
+  <!-- Load p5.js -->
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.4/lib/p5.js"></script>
+
+</head>
+
+<body style="padding: 20px;">
+
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+}
+canvas {
+  display: block;
+}
+</style>
+
+<script>
+let x = 50;
+let y = 50;
+let d = 80;
+let diry = 5;
+let dirx = 2;
+let t = -1
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  background(220);
+  frameRate(60)
+}
+
+function draw() {
+  background(220);
+  ellipse(x,y,d,d);
+  x += dirx * mouseX * 0.01;
+  y += diry * mouseY * 0.01;
+  
+  let r = random(256);
+  let g = random(256);
+  let b = random(256);
+  
+  if(y >= windowHeight - d/2){
+    fill(r, g, b);
+    diry*=t;
+     }
+  else if(y <= 0 + d/2){
+    fill(r, g, b)
+    diry*=t;
+     }
+  else if(x >= windowWidth - d/2){
+    fill(r, g, b)
+    dirx*=t
+  }
+  else if(x <= 0 + d/2){
+    fill(r, g, b)
+    dirx*=t
+  }
+}
+</script>
+
+</body>
+</html>
