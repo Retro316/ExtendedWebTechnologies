@@ -6,6 +6,7 @@
 
   <!-- Load p5.js -->
   <script src="https://cdn.jsdelivr.net/npm/p5@1.9.4/lib/p5.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.4/lib/addons/p5.sound.js"></script>
 
 </head>
 
@@ -27,7 +28,22 @@ let y = 50;
 let d = 80;
 let diry = 5;
 let dirx = 2;
-let t = -1
+let t = -1;
+
+let pingAry = [];
+let ping;
+
+function preload() {
+  pingAry = [
+    loadSound('Sounds/Ping1.mp3'),
+    loadSound('Sounds/Ping2.mp3'),
+    loadSound('Sounds/Ping3.mp3'),
+    loadSound('Sounds/Ping4.mp3'),
+    loadSound('Sounds/Ping5.mp3'),
+    loadSound('Sounds/Ping6.mp3')
+  ];
+}
+
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -35,7 +51,13 @@ function setup() {
   frameRate(60)
 }
 
+function mouseClicked() {
+  x = 50;
+  y = 50;
+}
+
 function draw() {
+  ping = loadSound(pingAry[random(5)]);
   background(220);
   ellipse(x,y,d,d);
   x += dirx * mouseX * 0.01;
@@ -47,20 +69,32 @@ function draw() {
   
   if(y >= windowHeight - d/2){
     fill(r, g, b);
+    ping = random(pingAry);
+    ping.play();
     diry*=t;
      }
   else if(y <= 0 + d/2){
     fill(r, g, b)
+    ping = random(pingAry);
+    ping.play();
     diry*=t;
      }
   else if(x >= windowWidth - d/2){
     fill(r, g, b)
+    ping = random(pingAry);
+    ping.play();
     dirx*=t
   }
   else if(x <= 0 + d/2){
     fill(r, g, b)
+    ping = random(pingAry);
+    ping.play();
     dirx*=t
   }
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
 }
 </script>
 
