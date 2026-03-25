@@ -26,12 +26,18 @@ canvas {
 let x = 50;
 let y = 50;
 let d = 80;
-let diry = 5;
+let diry = 3;
 let dirx = 2;
 let t = -1;
 
+let r = 255;
+let g = 255;
+let b = 255;
+
 let pingAry = [];
 let ping;
+
+let points = 0;
 
 function preload() {
   pingAry = [
@@ -52,40 +58,60 @@ function setup() {
 }
 
 function mouseClicked() {
-  x = 50;
-  y = 50;
+  let distFromCenter = dist(mouseX, mouseY, x, y);
+
+  if (distFromCenter < d) {
+    // CLICKED THE CIRCLE
+    dirx *= 1.5;
+    diry *= 1.5;
+    points++;
+  }
 }
 
 function draw() {
   ping = loadSound(pingAry[random(5)]);
   background(220);
+  textSize(36);
+  fill(50, 0, 0);
+  textFont('Times New Roman');
+  text(`Score: ${points}`, 25, 50);
+  fill(r, g, b);
+
   ellipse(x,y,d,d);
-  x += dirx * mouseX * 0.01;
-  y += diry * mouseY * 0.01;
-  
-  let r = random(256);
-  let g = random(256);
-  let b = random(256);
+  x += dirx;
+  y += diry;
   
   if(y >= windowHeight - d/2){
+    r = random(256);
+    g = random(256);
+    b = random(256);
     fill(r, g, b);
     ping = random(pingAry);
     ping.play();
     diry*=t;
      }
   else if(y <= 0 + d/2){
+    r = random(256);
+    g = random(256);
+    b = random(256);
     fill(r, g, b)
     ping = random(pingAry);
     ping.play();
     diry*=t;
      }
   else if(x >= windowWidth - d/2){
+    r = random(256);
+    g = random(256);
+    b = random(256);
     fill(r, g, b)
     ping = random(pingAry);
     ping.play();
     dirx*=t
   }
   else if(x <= 0 + d/2){
+    r = random(256);
+    g = random(256);
+    b = random(256);
     fill(r, g, b)
     ping = random(pingAry);
     ping.play();
