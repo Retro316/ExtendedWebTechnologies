@@ -38,6 +38,7 @@ let pingAry = [];
 let ping;
 
 let points = 0;
+let rank = ["Noob", "Meh", "Ok", "Nice", "Crazy", "Amazing", "Legendary", "Godly"]
 
 function preload() {
   pingAry = [
@@ -54,7 +55,7 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   background(220);
-  frameRate(60)
+  frameRate(120)
 }
 
 function mouseClicked() {
@@ -69,17 +70,30 @@ function mouseClicked() {
 }
 
 function draw() {
-  ping = loadSound(pingAry[random(5)]);
   background(220);
   textSize(36);
   fill(50, 0, 0);
   textFont('Times New Roman');
-  text(`Score: ${points}`, 25, 50);
+  if (points < 8)
+{
+  text(`Speed: ${points} \nRank: ${rank[points]}`, 25, 50);
+}
+else
+{
+  text(`Speed: ${points} \nRank: Honored one}`, 25, 50);
+}
   fill(r, g, b);
 
   ellipse(x,y,d,d);
   x += dirx;
   y += diry;
+
+ if(x > windowWidth || x < 0)
+{
+  //reset
+  x = random(50, windowWidth - 50);
+  y = random(50, windowHeight - 50);
+}
   
   if(y >= windowHeight - d/2){
     r = random(256);
